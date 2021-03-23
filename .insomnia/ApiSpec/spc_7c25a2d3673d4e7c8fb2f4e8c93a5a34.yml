@@ -1,0 +1,184 @@
+_id: spc_7c25a2d3673d4e7c8fb2f4e8c93a5a34
+type: ApiSpec
+parentId: wrk_b6ab6124d633488497d75af8f11fdb23
+modified: 1616522246871
+created: 1616517128363
+fileName: UnlimitedWarsOnlineLiteSpec
+contents: >-
+  openapi: 3.0.0
+
+
+  info:
+    version: 0.0.1
+    title: Unlimited Wars Online Lite API
+    description: Provides API interface for UWO Lite clients.
+    contact:
+      email: uwo@totalimagine.com
+    license:
+      name: Apache 2.0
+      url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+  servers:
+    - url: https://uwo.totalimagine.com
+
+    
+  externalDocs:
+    description: Official Website (Web Client)
+    url: https://wars.totalimagine.com
+
+    
+  paths:
+    /services:
+      get:
+        summary: Get a list of available services registered.
+        description: This provides a central places for public servers that wish to make their addresses publically available.
+        parameters:
+          - name: limit
+            in: query
+            description: Limit number of results
+            required: true
+            schema:
+              type: integer
+              example: 50
+        responses:
+          '200':
+            description: A list of currently enlisted servers.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: string
+                  example: ["test_server/192.15.12.2:8000", "test_server2/192.15.12.2:8080"]
+      post:
+        summary: Register information about a new service.
+        description: Use this entrypoint to enlist your server address so others can discover it.
+        parameters:
+          - name: descriptor
+            in: query
+            description: A string description of complete server information. The input string is in the format of `name/IP:port`, and name can be anything other than a backslash. All underscores in the name will be replaced with space.
+            required: true
+            schema:
+              type: string
+              example: "my_server/26.73.8.10:7000"
+      put:
+        summary: Refresh server enlisting information.
+        description: An enlisted service will get remove if there is no "update" from it for more than a week. Call this function to update it.
+        parameters:
+          - name: descriptor
+            in: query
+            description: A string description of complete server information. The input string is in the format of `name/IP:port`, and name can be anything other than a backslash. All underscores in the name will be replaced with space.
+            required: true
+            schema:
+              type: string
+              example: "my_server/26.73.8.10:7000"
+      delete:
+        summary: Unregister a service.
+        description: Call this to remove enlisting of a server address
+        parameters:
+          - name: descriptor
+            in: query
+            description: A string description of complete server information. The input string is in the format of `name/IP:port`, and name can be anything other than a backslash. All underscores in the name will be replaced with space.
+            required: true
+            schema:
+              type: string
+              example: "my_server/26.73.8.10:7000"
+    /session:
+      get:
+        summary: Get basic session token.
+        description: All ongoing communication with a server is maintained through this session token. A session token is guaranteed unique during an ongoing communication. Everytie the client restarts it needs to query a new sssion token.
+        parameters:
+          - name: username
+            in: query
+            description: Initialize the token with an associated user. Case-insensitive.
+            required: false
+            schema:
+              type: string
+              example: Charles
+          - name: passphrase
+            in: query
+            description: A passphrase associated with the user. This must be provided if `username` is provided. Case-insensitive.
+            required: false
+            schema:
+              type: string
+              example: My passphrase is very cool.
+        responses:
+          '200':
+            description: Successful connection to the server with a session token.
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: "1"
+          '204':
+            description: Server failed to create a session token or server cannot find a corresponding user with provided credentials. The return value contains error message.
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: "Server cannot create a session token due to capacity limit."
+      put:
+        summary: Associate a user identity with activities in the session.
+        description: Any annonymous player can join the server and depend on server configuration perform activities in the world. All those actions are by default associated with that session only. In order to permanently associate those activities with a particular user, call this fuction to associate the session with that user.
+        parameters:
+          - name: username
+            in: query
+            description: Initialize the token with an associated user. Case-insensitive.
+            required: false
+            schema:
+              type: string
+              example: Charles
+          - name: passphrase
+            in: query
+            description: A passphrase associated with the user. This must be provided if `username` is provided. Case-insensitive.
+            required: false
+            schema:
+              type: string
+              example: My passphrase is very cool.
+        responses:
+          '200':
+            description: Successful associated a user with the session.
+          '204':
+            description: The session token is invalid or the server cannot find a corresponding user with provided credentials. The return value contains error message.
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: "Wrong user credientials."
+    /command:
+      post:
+        summary: Send a text command to the server and get corresponding response.
+        description: This is the main interface for ongoing communication with the server.
+        parameters:
+          - name: session
+            in: query
+            description: The session ID.
+            required: true
+            schema:
+              type: string
+              example: G15
+          - name: command
+            in: query
+            description: The command.
+            required: true
+            schema:
+              type: string
+              example: place tank (15, 75)
+        responses:
+          '200':
+            description: Command is successfully received.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    output: 
+                      description: Output message of the command.
+                      type: string
+                    payload:
+                      description: Object data associated with command output.
+                      type: application/json
+                  example: 
+                    output: Command is executed.
+                    payload: Additional data
+contentType: yaml

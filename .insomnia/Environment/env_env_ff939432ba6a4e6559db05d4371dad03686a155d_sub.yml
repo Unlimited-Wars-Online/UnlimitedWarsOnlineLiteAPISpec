@@ -1,0 +1,14 @@
+_id: env_env_ff939432ba6a4e6559db05d4371dad03686a155d_sub
+type: Environment
+parentId: env_ff939432ba6a4e6559db05d4371dad03686a155d
+modified: 1616519037043
+created: 1616519037043
+name: OpenAPI env
+data:
+  scheme: https
+  base_path: ""
+  host: uwo.totalimagine.com
+dataPropertyOrder: null
+color: null
+isPrivate: false
+metaSortKey: 1616519037043

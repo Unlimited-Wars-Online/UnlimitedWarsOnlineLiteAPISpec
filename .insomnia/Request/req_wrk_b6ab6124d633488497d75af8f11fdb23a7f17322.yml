@@ -1,0 +1,24 @@
+_id: req_wrk_b6ab6124d633488497d75af8f11fdb23a7f17322
+type: Request
+parentId: wrk_b6ab6124d633488497d75af8f11fdb23
+modified: 1616519037026
+created: 1616519037026
+url: "{{ base_url }}/services"
+name: Get a list of available services registered.
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: limit
+    disabled: false
+    value: "1"
+headers: []
+authentication: {}
+metaSortKey: -1616519037026
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
