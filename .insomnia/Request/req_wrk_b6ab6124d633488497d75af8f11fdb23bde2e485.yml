@@ -1,0 +1,24 @@
+_id: req_wrk_b6ab6124d633488497d75af8f11fdb23bde2e485
+type: Request
+parentId: wrk_b6ab6124d633488497d75af8f11fdb23
+modified: 1616522821610
+created: 1616522821610
+url: "{{ base_url }}/services"
+name: Register information about a new service.
+description: ""
+method: POST
+body: {}
+parameters:
+  - name: descriptor
+    disabled: false
+    value: my_server/26.73.8.10:7000
+headers: []
+authentication: {}
+metaSortKey: -1616522821610
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

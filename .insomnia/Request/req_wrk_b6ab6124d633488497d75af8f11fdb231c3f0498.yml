@@ -1,0 +1,27 @@
+_id: req_wrk_b6ab6124d633488497d75af8f11fdb231c3f0498
+type: Request
+parentId: wrk_b6ab6124d633488497d75af8f11fdb23
+modified: 1616522821602
+created: 1616522821602
+url: "{{ base_url }}/command"
+name: Send a text command to the server and get corresponding response.
+description: ""
+method: POST
+body: {}
+parameters:
+  - name: session
+    disabled: false
+    value: G15
+  - name: command
+    disabled: false
+    value: place tank (15, 75)
+headers: []
+authentication: {}
+metaSortKey: -1616522821602
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

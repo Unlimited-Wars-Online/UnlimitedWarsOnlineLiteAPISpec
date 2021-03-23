@@ -1,7 +1,7 @@
 _id: spc_7c25a2d3673d4e7c8fb2f4e8c93a5a34
 type: ApiSpec
 parentId: wrk_b6ab6124d633488497d75af8f11fdb23
-modified: 1616522246871
+modified: 1616533700330
 created: 1616517128363
 fileName: UnlimitedWarsOnlineLiteSpec
 contents: >-
@@ -21,10 +21,12 @@ contents: >-
   servers:
     - url: https://uwo.totalimagine.com
 
+
     
   externalDocs:
     description: Official Website (Web Client)
     url: https://wars.totalimagine.com
+
 
     
   paths:
@@ -172,13 +174,54 @@ contents: >-
                 schema:
                   type: object
                   properties:
-                    output: 
+                    Output: 
                       description: Output message of the command.
                       type: string
-                    payload:
+                    Payload:
                       description: Object data associated with command output.
                       type: application/json
                   example: 
-                    output: Command is executed.
-                    payload: Additional data
+                    Output: Command is executed.
+                    Payload: Additional data
+    /world:
+      get:
+        summary: Get information about current world.
+        responses:
+          '200':
+            description: Command is successfully received.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    MapName: 
+                      description: Name of the map.
+                      type: string
+                    Mapsize:
+                      description: Size of the map; Unit in pixels.
+                      type: array
+                      items:
+                        type: integer
+                    Units:
+                      description: A list of all observable units to current player.
+                      type: object
+                    Statistics:
+                      description: Some high-level summary statistics about this server/map.
+                      type: object
+                  example: 
+                    MapName: Rapid Fire 1533
+                    MapSize: [1024, 2048]
+                    Units:
+                      'Tank#14':
+                        Type: Tank
+                        Location: (123, 235)
+                        Faction: None
+                        OriginalManufacturer: General Tanks (Faction 2)
+                    Statistics: 
+                      ServerRuntime: 16 hrs
+                      CurrentPlayers: 16
+                      TotalUnits: 12545034
+                      LiveUnits: 12450
+                      DeadUnits: 12403
+                      Cities: 135
 contentType: yaml

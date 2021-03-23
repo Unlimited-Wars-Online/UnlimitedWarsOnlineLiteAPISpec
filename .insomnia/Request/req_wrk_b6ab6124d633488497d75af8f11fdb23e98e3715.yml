@@ -1,0 +1,27 @@
+_id: req_wrk_b6ab6124d633488497d75af8f11fdb23e98e3715
+type: Request
+parentId: wrk_b6ab6124d633488497d75af8f11fdb23
+modified: 1616522821604
+created: 1616522821604
+url: "{{ base_url }}/session"
+name: Associate a user identity with activities in the session.
+description: ""
+method: PUT
+body: {}
+parameters:
+  - name: username
+    disabled: true
+    value: Charles
+  - name: passphrase
+    disabled: true
+    value: My passphrase is very cool.
+headers: []
+authentication: {}
+metaSortKey: -1616522821604
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

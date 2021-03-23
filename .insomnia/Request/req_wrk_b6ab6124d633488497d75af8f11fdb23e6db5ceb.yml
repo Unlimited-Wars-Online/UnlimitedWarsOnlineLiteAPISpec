@@ -1,0 +1,27 @@
+_id: req_wrk_b6ab6124d633488497d75af8f11fdb23e6db5ceb
+type: Request
+parentId: wrk_b6ab6124d633488497d75af8f11fdb23
+modified: 1616522821605
+created: 1616522821605
+url: "{{ base_url }}/session"
+name: Get basic session token.
+description: ""
+method: GET
+body: {}
+parameters:
+  - name: username
+    disabled: true
+    value: Charles
+  - name: passphrase
+    disabled: true
+    value: My passphrase is very cool.
+headers: []
+authentication: {}
+metaSortKey: -1616522821605
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
